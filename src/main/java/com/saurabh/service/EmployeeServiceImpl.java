@@ -1,8 +1,11 @@
 package com.saurabh.service;
 
+import com.saurabh.Application;
 import com.saurabh.entity.Employee;
+import com.saurabh.exceptions.EmployeeNotFoundException;
 import com.saurabh.repository.EmployeeRepository;
 import com.saurabh.repository.EmployeeRepositoryImpl;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -16,8 +19,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     EmployeeRepository repository;
 
+    static org.apache.log4j.Logger log = Logger.getLogger(Application.class.getName());
+
     @Override
     public List<Employee> findAll() {
+
         return repository.findAll();
     }
 
@@ -26,7 +32,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         // business logic to handle null
         Employee e = repository.findOne(id);
         if(e==null) {
-            return null;
+            log.info(new EmployeeNotFoundException("Employee with id " + id + " NOT FOUND"));
+            throw  new EmployeeNotFoundException("Employee with id " + id + " NOT FOUND");
         }else {
             return e;
         }
@@ -35,7 +42,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee create(Employee e) {
-        return null;
+        return e;
     }
 
     @Override
