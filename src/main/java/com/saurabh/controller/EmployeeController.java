@@ -34,8 +34,8 @@ public class EmployeeController {
     Status: 200, 404, 500
 * */ // GET
     @RequestMapping(method = RequestMethod.GET, value="{id}")
-    public Employee findOne(@PathVariable("id") String empId) {
-        return service.findOne(empId);
+    public Employee findOne(@PathVariable("id") String empId) throws Throwable {
+        return  service.findOne(empId);
     }
 
     /*
@@ -51,7 +51,7 @@ public class EmployeeController {
      */ // POST
     @RequestMapping(method = RequestMethod.POST)
     public Employee create(@RequestBody Employee e) {
-        return null;
+        return service.create(e);
     }
 
     /*

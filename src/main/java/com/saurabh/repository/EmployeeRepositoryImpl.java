@@ -20,7 +20,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     public Employee findOne(String id) {
-        Employee e = new Employee("bill gates", "bgates@gmail.com", 500000);
-        return e;
+//        Employee e = new Employee("bill gates", "bgates@gmail.com", 500000);
+//        return e;
+        return null;
     }
 }
